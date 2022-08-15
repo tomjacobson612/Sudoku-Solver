@@ -35,7 +35,10 @@ class Button():
 
 # Buttons
 solve_img = pygame.image.load('solve.jpg').convert_alpha()
-solve_button = Button(370, 1025, solve_img)
+solve_button = Button(100, 1025, solve_img)
+
+restart_img = pygame.image.load('restart.png').convert_alpha()
+restart_button = Button(600, 1040, restart_img)
 
 class Game:
     def __init__(self):
@@ -159,6 +162,9 @@ def main():
     app.populate_grid()
 
     while True:
+        if restart_button.draw():
+            main()
+            return
         if solve_button.draw() and not app.solved:
             app.solve()
             app.populate_solved()
