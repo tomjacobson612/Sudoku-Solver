@@ -155,7 +155,6 @@ class Game:
                     window.blit(value, ((j + 1) * 100 + 30, (i + 1) * 100 + 15))
         pygame.display.update()
 
-
 def main():
     app = Game()
     app.draw_grid()
@@ -163,8 +162,9 @@ def main():
 
     while True:
         if restart_button.draw():
-            main()
-            return
+            app = Game()
+            app.draw_grid()
+            app.populate_grid()
         if solve_button.draw() and not app.solved:
             app.solve()
             app.populate_solved()
@@ -172,6 +172,7 @@ def main():
             if event.type == pygame.QUIT:
                 pygame.quit()
                 return
+
         pygame.display.update()
 
 if __name__ == "__main__" :
